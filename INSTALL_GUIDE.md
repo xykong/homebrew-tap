@@ -5,17 +5,17 @@
 ### 1. 添加本地 tap（开发环境）
 
 ```bash
-brew tap xykong/xykong /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-xykong
+brew tap xykong/tap /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-tap
 ```
 
 ### 2. 安装 macos-sensor-exporter
 
 ```bash
 # 从 HEAD 安装（最新开发版本）
-brew install --HEAD xykong/xykong/macos-sensor-exporter
+brew install --HEAD xykong/tap/macos-sensor-exporter
 
 # 或者从 stable 版本安装（需要先打 tag）
-brew install xykong/xykong/macos-sensor-exporter
+brew install xykong/tap/macos-sensor-exporter
 ```
 
 ### 3. 使用
@@ -43,16 +43,16 @@ macos-sensor-exporter start --port 8080
 
 ```bash
 # 启动服务（开机自动启动）
-brew services start xykong/xykong/macos-sensor-exporter
+brew services start xykong/tap/macos-sensor-exporter
 
 # 查看服务状态
 brew services list
 
 # 停止服务
-brew services stop xykong/xykong/macos-sensor-exporter
+brew services stop xykong/tap/macos-sensor-exporter
 
 # 重启服务
-brew services restart xykong/xykong/macos-sensor-exporter
+brew services restart xykong/tap/macos-sensor-exporter
 
 # 查看日志
 tail -f /usr/local/var/log/macos-sensor-exporter.log
@@ -85,13 +85,13 @@ scrape_configs:
 
 ```bash
 # 停止服务
-brew services stop xykong/xykong/macos-sensor-exporter
+brew services stop xykong/tap/macos-sensor-exporter
 
 # 卸载
 brew uninstall macos-sensor-exporter
 
 # 移除 tap
-brew untap xykong/xykong
+brew untap xykong/tap
 ```
 
 ## 开发者指南
@@ -99,7 +99,7 @@ brew untap xykong/xykong
 ### 推送到远程仓库
 
 ```bash
-cd /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-xykong
+cd /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-tap
 git push origin master
 ```
 
@@ -109,7 +109,7 @@ git push origin master
 
 ```bash
 # 添加远程 tap
-brew tap xykong/xykong
+brew tap xykong/tap
 
 # 安装
 brew install macos-sensor-exporter
@@ -138,7 +138,7 @@ brew services start macos-sensor-exporter
 
 3. 提交并推送：
    ```bash
-   cd /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-xykong
+   cd /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-tap
    git add Formula/macos-sensor-exporter.rb
    git commit -m "Update macos-sensor-exporter to v0.2.0"
    git push origin master
@@ -148,13 +148,13 @@ brew services start macos-sensor-exporter
 
 ```bash
 # 语法检查
-brew audit --strict --online xykong/xykong/macos-sensor-exporter
+brew audit --strict --online xykong/tap/macos-sensor-exporter
 
 # 测试安装
-brew install --build-from-source xykong/xykong/macos-sensor-exporter
+brew install --build-from-source xykong/tap/macos-sensor-exporter
 
 # 运行测试
-brew test xykong/xykong/macos-sensor-exporter
+brew test xykong/tap/macos-sensor-exporter
 ```
 
 ## 故障排查
@@ -169,8 +169,8 @@ brew update
 brew tap
 
 # 重新添加 tap
-brew untap xykong/xykong
-brew tap xykong/xykong
+brew untap xykong/tap
+brew tap xykong/tap
 ```
 
 ### 构建失败
@@ -180,7 +180,7 @@ brew tap xykong/xykong
 brew cleanup -s
 
 # 重新安装
-brew reinstall --build-from-source xykong/xykong/macos-sensor-exporter
+brew reinstall --build-from-source xykong/tap/macos-sensor-exporter
 ```
 
 ### 服务无法启动

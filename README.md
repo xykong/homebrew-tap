@@ -1,4 +1,4 @@
-# homebrew-xykong
+# homebrew-tap
 
 xykong 的 Homebrew tap，包含自定义的 formula。
 
@@ -7,13 +7,13 @@ xykong 的 Homebrew tap，包含自定义的 formula。
 ### 添加 tap
 
 ```bash
-brew tap xykong/xykong
+brew tap xykong/tap
 ```
 
 如果是本地开发，可以添加本地 tap：
 
 ```bash
-brew tap xykong/xykong /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-xykong
+brew tap xykong/tap /Users/xykong/workspace/xykong/macos-sensor-exporter-project/homebrew-tap
 ```
 
 ### 安装软件
@@ -38,16 +38,16 @@ macos-sensor-exporter show
 macos-sensor-exporter start
 
 # 使用 brew service 管理（推荐）
-brew services start macos-sensor-exporter
+brew services start xykong/tap/macos-sensor-exporter
 
 # 查看服务状态
 brew services list
 
 # 停止服务
-brew services stop macos-sensor-exporter
+brew services stop xykong/tap/macos-sensor-exporter
 
 # 重启服务
-brew services restart macos-sensor-exporter
+brew services restart xykong/tap/macos-sensor-exporter
 ```
 
 **配置：**
@@ -80,7 +80,7 @@ brew install --build-from-source ./Formula/macos-sensor-exporter.rb
 brew test macos-sensor-exporter
 
 # 审计 formula
-brew audit --strict macos-sensor-exporter
+brew audit --strict xykong/tap/macos-sensor-exporter
 ```
 
 ### 更新 formula
