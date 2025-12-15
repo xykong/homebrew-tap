@@ -2,7 +2,7 @@ class MacosSensorExporter < Formula
   desc "Prometheus exporter for macOS hardware sensors"
   homepage "https://github.com/xykong/macos-sensor-exporter"
   url "https://github.com/xykong/macos-sensor-exporter.git",
-      tag:      "v0.1.0",
+      tag:      "v1.0.6",
       revision: "HEAD"
   license "MIT"
   head "https://github.com/xykong/macos-sensor-exporter.git", branch: "main"
