@@ -3,7 +3,7 @@ class MacosSensorExporter < Formula
   homepage "https://github.com/xykong/macos-sensor-exporter"
   url "https://github.com/xykong/macos-sensor-exporter.git",
       tag:      "v1.0.6",
-      revision: "HEAD"
+      revision: "4496d863504bade8c94463cf06d78c1e790057f3"
   license "MIT"
   head "https://github.com/xykong/macos-sensor-exporter.git", branch: "main"
 
