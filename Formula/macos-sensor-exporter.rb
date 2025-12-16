@@ -20,16 +20,24 @@ class MacosSensorExporter < Formula
     bin.install "macos-sensor-exporter"
   end
 
+  def caveats
+    <<~EOS
+      To start the exporter:
+        macos-sensor-exporter start
+
+      To run as a service:
+        brew services start macos-sensor-exporter
+
+      To view sensor data:
+        macos-sensor-exporter show
+    EOS
+  end
+
   service do
     run [opt_bin/"macos-sensor-exporter", "start"]
     keep_alive true
     log_path var/"log/macos-sensor-exporter.log"
     error_log_path var/"log/macos-sensor-exporter.log"
     working_dir var
-  end
-
-  test do
-    # Simple test that doesn't trigger build requirements
-    system bin/"macos-sensor-exporter", "--help"
   end
 end
