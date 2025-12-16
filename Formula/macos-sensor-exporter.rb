@@ -1,17 +1,21 @@
 class MacosSensorExporter < Formula
   desc "Prometheus exporter for macOS hardware sensors"
   homepage "https://github.com/xykong/macos-sensor-exporter"
-  url "https://github.com/xykong/macos-sensor-exporter.git",
-      tag:      "v1.1.0",
-      revision: "f3a3061171cceb1a2a2f61f465eb84678ad0a9b4"
+  version "1.1.0"
   license "MIT"
-  head "https://github.com/xykong/macos-sensor-exporter.git", branch: "main"
 
-  depends_on "go" => :build
+  if Hardware::CPU.arm?
+    url "https://github.com/xykong/macos-sensor-exporter/releases/download/v1.1.0/macos-sensor-exporter_1.1.0_Darwin_arm64.tar.gz"
+    sha256 "1160c195442373c60891ea342b02b3d363a33ed90016a151e8638942edf88c12"
+  else
+    url "https://github.com/xykong/macos-sensor-exporter/releases/download/v1.1.0/macos-sensor-exporter_1.1.0_Darwin_x86_64.tar.gz"
+    sha256 "8f4a4d09fb84c2c11c8868eb3911982e3d6642d16897fdfc3803ff38038b7103"
+  end
+
   depends_on :macos
 
   def install
-    system "go", "build", *std_go_args(ldflags: "-s -w -X main.version=#{version}")
+    bin.install "macos-sensor-exporter"
   end
 
   service do
