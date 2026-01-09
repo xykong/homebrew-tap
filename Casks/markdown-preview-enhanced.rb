@@ -1,6 +1,6 @@
 cask 'markdown-preview-enhanced' do
-  version '1.1.61'
-  sha256 '2d2b3e0ffbd6cde8125cd7457f1265e6fdf6a87ab659e345e6eeb22d49f07221'
+  version '1.1.65'
+  sha256 '80653595a67ecbfa9d1931bff948198a4b824a405c950b2af8a10bd72616accb'
 
   url "https://github.com/xykong/markdown-quicklook/releases/download/v#{version}/MarkdownPreviewEnhanced.dmg"
   name 'Markdown Preview Enhanced'
@@ -24,7 +24,7 @@ cask 'markdown-preview-enhanced' do
 
     # Open the app in background to trigger QuickLook extension registration
     system_command '/usr/bin/open',
-                   args: ['-g', "#{appdir}/Markdown Preview Enhanced.app"],
+                   args: ['-g', "#{appdir}/Markdown Preview Enhanced.app", '--args', '--register-only'],
                    sudo: false
   end
 
