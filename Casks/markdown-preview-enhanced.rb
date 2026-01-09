@@ -9,6 +9,12 @@ cask 'markdown-preview-enhanced' do
 
   app 'Markdown Preview Enhanced.app'
 
+  postflight do
+    system_command '/usr/bin/xattr',
+                   args: ['-cr', "#{appdir}/Markdown Preview Enhanced.app"],
+                   sudo: false
+  end
+
   zap trash: [
     '~/Library/Application Scripts/com.xykong.Markdown',
     '~/Library/Containers/com.xykong.Markdown',
