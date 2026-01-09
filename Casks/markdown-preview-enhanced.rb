@@ -21,7 +21,19 @@ cask 'markdown-preview-enhanced' do
     system_command '/usr/bin/qlmanage',
                    args: ['-r'],
                    sudo: false
+
+    # Open the app in background to trigger QuickLook extension registration
+    system_command '/usr/bin/open',
+                   args: ['-g', "#{appdir}/Markdown Preview Enhanced.app"],
+                   sudo: false
   end
+
+  caveats <<~EOS
+    If the QuickLook extension does not work immediately:
+      1. Run 'qlmanage -r' in Terminal.
+      2. Restart Finder (Force Quit > Finder > Relaunch).
+      3. Set 'Markdown Preview Enhanced.app' as the default app for .md files.
+  EOS
 
   zap trash: [
     '~/Library/Application Scripts/com.xykong.Markdown',
