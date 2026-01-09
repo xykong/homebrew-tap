@@ -13,6 +13,14 @@ cask 'markdown-preview-enhanced' do
     system_command '/usr/bin/xattr',
                    args: ['-cr', "#{appdir}/Markdown Preview Enhanced.app"],
                    sudo: false
+
+    system_command '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister',
+                   args: ['-f', "#{appdir}/Markdown Preview Enhanced.app"],
+                   sudo: false
+
+    system_command '/usr/bin/qlmanage',
+                   args: ['-r'],
+                   sudo: false
   end
 
   zap trash: [
