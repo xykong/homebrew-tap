@@ -18,6 +18,16 @@ brew tap xykong/tap /Users/xykong/workspace/xykong/macos-sensor-exporter-project
 
 ### 安装软件
 
+#### markdown-preview-enhanced (Cask)
+
+Markdown Preview Enhanced for macOS QuickLook.
+
+**安装：**
+
+```bash
+brew install --cask markdown-preview-enhanced
+```
+
 #### macos-sensor-exporter
 
 Prometheus exporter for macOS hardware sensors（macOS 硬件传感器的 Prometheus 导出器）
