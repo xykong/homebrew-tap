@@ -1,11 +1,18 @@
 cask 'markdown-preview-enhanced' do
-  version '1.3.73'
-  sha256 'ca72b7201410962f0f5d272149b2405a5d191a8e692d9526f23ecad3882cd306'
+  version '1.5.87'
+  sha256 '95232553c776f7bb0f20d9b98cd113ef5d95aa0df550fa4fc09c65ad271872f9'
 
   url "https://github.com/xykong/markdown-quicklook/releases/download/v#{version}/MarkdownPreviewEnhanced.dmg"
   name 'Markdown Preview Enhanced'
   desc 'Markdown Preview Enhanced for macOS QuickLook'
   homepage 'https://github.com/xykong/markdown-quicklook'
+
+  auto_updates true
+
+  livecheck do
+    url "https://xykong.github.io/markdown-quicklook/appcast.xml"
+    strategy :sparkle, &:short_version
+  end
 
   app 'Markdown Preview Enhanced.app'
 
