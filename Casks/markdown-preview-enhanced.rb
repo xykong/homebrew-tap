@@ -1,6 +1,6 @@
 cask 'markdown-preview-enhanced' do
-  version '1.10.127'
-  sha256 '1415ea82edfd1d681542ccc6c532eb2256ca9af59f55ce1b88835c34700f0602'
+  version '1.11.130'
+  sha256 '8bf25ff188f0636f89074d97486909b28a9b2ceb2f084aa32ceafedfa8821103'
 
   url "https://github.com/xykong/markdown-quicklook/releases/download/v#{version}/MarkdownPreviewEnhanced.dmg"
   name 'Markdown Preview Enhanced'
