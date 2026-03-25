@@ -1,6 +1,6 @@
 cask 'flux-markdown' do
-  version '1.19.253'
-  sha256 '17962558da62ae0bf26a1dd4e43d2521bff13063796a75e8ae3ba31a12eed5a0'
+  version '1.19.256'
+  sha256 '6f02d7a9092c81473fa81afcc680adc5b12fd8905ca9f2b1d012ba01960188c0'
 
   url "https://github.com/xykong/flux-markdown/releases/download/v#{version}/FluxMarkdown.dmg"
   name 'FluxMarkdown'
