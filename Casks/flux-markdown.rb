@@ -36,13 +36,16 @@ cask 'flux-markdown' do
                    args: ['-g', "#{appdir}/FluxMarkdown.app", '--args', '--register-only'],
                    sudo: false
 
-    # Set FluxMarkdown as the default handler for Markdown file types
+    # Set FluxMarkdown as the default handler for Markdown file types.
+    # Use file extensions (.md, .markdown) rather than UTIs to avoid
+    # "does not conform to any UTI hierarchy" errors on clean systems.
     duti_bin = ['/opt/homebrew/bin/duti', '/usr/local/bin/duti'].find { |p| File.exist?(p) }
     if duti_bin
-      %w[net.daringfireball.markdown public.markdown].each do |uti|
+      %w[.md .markdown].each do |ext|
         system_command duti_bin,
-                       args: ['-s', 'com.xykong.Markdown', uti, 'all'],
-                       sudo: false
+                       args: ['-s', 'com.xykong.Markdown', ext, 'all'],
+                       sudo: false,
+                       print_stderr: false
       end
     end
   end
