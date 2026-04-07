@@ -16,6 +16,8 @@ cask 'flux-markdown' do
 
   app 'FluxMarkdown.app'
 
+  depends_on formula: 'duti'
+
   postflight do
     system_command '/usr/bin/xattr',
                    args: ['-cr', "#{appdir}/FluxMarkdown.app"],
@@ -33,13 +35,24 @@ cask 'flux-markdown' do
     system_command '/usr/bin/open',
                    args: ['-g', "#{appdir}/FluxMarkdown.app", '--args', '--register-only'],
                    sudo: false
+
+    # Set FluxMarkdown as the default handler for Markdown file types
+    duti_bin = ['/opt/homebrew/bin/duti', '/usr/local/bin/duti'].find { |p| File.exist?(p) }
+    if duti_bin
+      %w[net.daringfireball.markdown public.markdown].each do |uti|
+        system_command duti_bin,
+                       args: ['-s', 'com.xykong.Markdown', uti, 'all'],
+                       sudo: false
+      end
+    end
   end
 
   caveats <<~EOS
+    FluxMarkdown has been set as the default app for .md and .markdown files.
+
     If the QuickLook extension does not work immediately:
       1. Run 'qlmanage -r' in Terminal.
       2. Restart Finder (Force Quit > Finder > Relaunch).
-      3. Set 'FluxMarkdown.app' as the default app for .md files.
   EOS
 
   zap trash: [
