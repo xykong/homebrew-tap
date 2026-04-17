@@ -31,9 +31,12 @@ cask 'flux-markdown' do
                    args: ['-r'],
                    sudo: false
 
-    # Open the app in background to trigger QuickLook extension registration
-    system_command '/usr/bin/open',
-                   args: ['-g', "#{appdir}/FluxMarkdown.app", '--args', '--register-only'],
+    # Register the QuickLook extension directly via pluginkit.
+    # This works in headless/non-GUI sessions (e.g. a different admin user running brew).
+    # Replaces the previous `open --register-only` approach which required a GUI login
+    # session and caused the entire installation to be rolled back on failure (issue #20).
+    system_command '/usr/bin/pluginkit',
+                   args: ['-a', "#{appdir}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"],
                    sudo: false
 
     # Set FluxMarkdown as the default handler for Markdown file types.
