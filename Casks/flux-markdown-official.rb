@@ -1,4 +1,4 @@
-cask "flux-markdown" do
+cask "flux-markdown-official" do
   version "1.33.436"
   sha256 "8f30de561e01ee59d743f4b07f935f25f424546544f4d09c68bc38e8b19a6a91"
 
