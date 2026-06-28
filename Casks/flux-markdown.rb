@@ -13,6 +13,7 @@ cask "flux-markdown" do
   end
 
   auto_updates true
+  depends_on macos: :big_sur
   depends_on formula: "duti"
 
   app "FluxMarkdown.app"
