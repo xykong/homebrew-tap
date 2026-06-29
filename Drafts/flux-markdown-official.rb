@@ -1,6 +1,6 @@
-cask "flux-markdown-official" do
-  version "1.34.445"
-  sha256 "a725705ebf0886d30697fe30cd9fd3e4540c3620e8b4abc8f18e9293125cd61b"
+cask "flux-markdown" do
+  version "1.34.449"
+  sha256 "a1f39107a3f631c43a8dd0e9ed89295eff7be54b74b52ece6252165cd86f89af"
 
   url "https://github.com/xykong/flux-markdown/releases/download/v#{version}/FluxMarkdown.dmg"
   name "FluxMarkdown"
@@ -11,6 +11,8 @@ cask "flux-markdown-official" do
     url :stable
     strategy :github_latest
   end
+
+  depends_on macos: :big_sur
 
   app "FluxMarkdown.app"
 
