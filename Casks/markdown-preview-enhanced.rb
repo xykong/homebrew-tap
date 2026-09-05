@@ -16,7 +16,7 @@ cask 'markdown-preview-enhanced' do
 
   app 'Markdown Preview Enhanced.app'
 
-  postflight do
+  postflight_steps do
     system_command '/usr/bin/xattr',
                    args: ['-cr', "#{appdir}/Markdown Preview Enhanced.app"],
                    sudo: false
