@@ -16,24 +16,18 @@ cask "flux-markdown" do
 
   app "FluxMarkdown.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args: ["-cr", "{{appdir}}/FluxMarkdown.app"]
 
-    lsregister = "/System/Library/Frameworks/CoreServices.framework" \
-                 "/Frameworks/LaunchServices.framework/Support/lsregister"
-    system_command lsregister,
-                   args: ["-f", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
+    run "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister",
+        args: ["-f", "{{appdir}}/FluxMarkdown.app"]
 
-    system_command "/usr/bin/qlmanage",
-                   args: ["-r"],
-                   sudo: false
+    run "/usr/bin/qlmanage",
+        args: ["-r"]
 
-    system_command "/usr/bin/pluginkit",
-                   args: ["-a", "#{appdir}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"],
-                   sudo: false
+    run "/usr/bin/pluginkit",
+        args: ["-a", "{{appdir}}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"]
   end
 
   zap trash: [
