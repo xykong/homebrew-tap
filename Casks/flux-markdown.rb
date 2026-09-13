@@ -13,45 +13,41 @@ cask "flux-markdown" do
   end
 
   auto_updates true
-  depends_on macos: :big_sur
   depends_on formula: "duti"
+  depends_on macos: :big_sur
 
   app "FluxMarkdown.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args:           ["-cr", "{{appdir}}/FluxMarkdown.app"],
+                          writable_paths: ["{{appdir}}/FluxMarkdown.app"]
 
-    lsregister = "/System/Library/Frameworks/CoreServices.framework" \
-                 "/Frameworks/LaunchServices.framework/Support/lsregister"
-    system_command lsregister,
-                   args: ["-f", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
+    run "/System/Library/Frameworks/CoreServices.framework" \
+        "/Frameworks/LaunchServices.framework/Support/lsregister",
+        args: ["-f", "{{appdir}}/FluxMarkdown.app"]
 
-    system_command "/usr/bin/qlmanage",
-                   args: ["-r"],
-                   sudo: false
+    run "/usr/bin/qlmanage", args: ["-r"]
 
     # Register the QuickLook extension directly via pluginkit.
     # This works in headless/non-GUI sessions (e.g. a different admin user running brew).
     # Replaces the previous `open --register-only` approach which required a GUI login
     # session and caused the entire installation to be rolled back on failure (issue #20).
-    system_command "/usr/bin/pluginkit",
-                   args: ["-a", "#{appdir}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"],
-                   sudo: false
+    run "/usr/bin/pluginkit",
+        args: ["-a", "{{appdir}}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"]
 
     # Set FluxMarkdown as the default handler for Markdown file types.
     # Use file extensions (.md, .markdown) rather than UTIs to avoid
     # "does not conform to any UTI hierarchy" errors on clean systems.
-    duti_bin = ["/opt/homebrew/bin/duti", "/usr/local/bin/duti"].find { |p| File.exist?(p) }
-    if duti_bin
-      %w[.md .markdown].each do |ext|
-        system_command duti_bin,
-                       args:         ["-s", "com.xykong.Markdown", ext, "all"],
-                       sudo:         false,
-                       print_stderr: false
-      end
+    if_path_exists "/opt/homebrew/bin/duti" do
+      run "/opt/homebrew/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"], print_stderr: false
+      run "/opt/homebrew/bin/duti", args:         ["-s", "com.xykong.Markdown", ".markdown", "all"],
+                                    print_stderr: false
+    end
+
+    if_path_exists "/usr/local/bin/duti" do
+      run "/usr/local/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"], print_stderr: false
+      run "/usr/local/bin/duti", args:         ["-s", "com.xykong.Markdown", ".markdown", "all"],
+                                 print_stderr: false
     end
   end
 
