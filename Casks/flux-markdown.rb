@@ -18,7 +18,7 @@ cask "flux-markdown" do
 
   app "FluxMarkdown.app"
 
-  postflight do
+  postflight_steps do
     system_command "/usr/bin/xattr",
                    args: ["-cr", "#{appdir}/FluxMarkdown.app"],
                    sudo: false
