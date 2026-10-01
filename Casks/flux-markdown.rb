@@ -30,7 +30,8 @@ cask "flux-markdown" do
     # Replaces the previous `open --register-only` approach which required a GUI login
     # session and caused the entire installation to be rolled back on failure (issue #20).
     run "/usr/bin/pluginkit",
-        args: ["-a", "{{appdir}}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"]
+        args:         ["-a", "{{appdir}}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"],
+        must_succeed: false
 
     # Set FluxMarkdown as the default handler for Markdown file types.
     # Use file extensions (.md, .markdown) rather than UTIs to avoid
