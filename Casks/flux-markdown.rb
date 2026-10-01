@@ -21,7 +21,8 @@ cask "flux-markdown" do
   postflight_steps do
     run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/FluxMarkdown.app"]
     run "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister",
-        args: ["-f", "{{appdir}}/FluxMarkdown.app"]
+        args:         ["-f", "{{appdir}}/FluxMarkdown.app"],
+        must_succeed: false
     run "/usr/bin/qlmanage", args: ["-r"]
 
     # Register the QuickLook extension directly via pluginkit.
