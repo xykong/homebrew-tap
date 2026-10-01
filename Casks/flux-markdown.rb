@@ -37,12 +37,16 @@ cask "flux-markdown" do
     # Use file extensions (.md, .markdown) rather than UTIs to avoid
     # "does not conform to any UTI hierarchy" errors on clean systems.
     if_path_exists "/opt/homebrew/bin/duti" do
-      run "/opt/homebrew/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"], print_stderr: false
-      run "/opt/homebrew/bin/duti", args: ["-s", "com.xykong.Markdown", ".markdown", "all"], print_stderr: false
+      run "/opt/homebrew/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"],
+                                      must_succeed: false, print_stderr: false
+      run "/opt/homebrew/bin/duti", args: ["-s", "com.xykong.Markdown", ".markdown", "all"],
+                                      must_succeed: false, print_stderr: false
     end
     if_path_exists "/usr/local/bin/duti" do
-      run "/usr/local/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"], print_stderr: false
-      run "/usr/local/bin/duti", args: ["-s", "com.xykong.Markdown", ".markdown", "all"], print_stderr: false
+      run "/usr/local/bin/duti", args: ["-s", "com.xykong.Markdown", ".md", "all"],
+                                    must_succeed: false, print_stderr: false
+      run "/usr/local/bin/duti", args: ["-s", "com.xykong.Markdown", ".markdown", "all"],
+                                    must_succeed: false, print_stderr: false
     end
   end
 
