@@ -16,25 +16,8 @@ cask "flux-markdown" do
 
   app "FluxMarkdown.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
-
-    lsregister = "/System/Library/Frameworks/CoreServices.framework" \
-                 "/Frameworks/LaunchServices.framework/Support/lsregister"
-    system_command lsregister,
-                   args: ["-f", "#{appdir}/FluxMarkdown.app"],
-                   sudo: false
-
-    system_command "/usr/bin/qlmanage",
-                   args: ["-r"],
-                   sudo: false
-
-    system_command "/usr/bin/pluginkit",
-                   args: ["-a", "#{appdir}/FluxMarkdown.app/Contents/PlugIns/MarkdownPreview.appex"],
-                   sudo: false
-  end
+  # Requires a signed/notarized release before official submission.
+  # App placement uses Homebrew's supported artifact; repair is available in-app.
 
   zap trash: [
     "~/Library/Application Scripts/com.xykong.Markdown",
